@@ -2,61 +2,57 @@ const ANIMALS = document.querySelector(".animals");
 const FOOD = document.querySelector(".food");
 const POINT = document.querySelector("#point");
 
+const obj = [
+  { animal: '🐵', food: '🍎', sound: './Sounds/Monkey.mp3' },
+  { animal: '🦍', food: '🍌', sound: './Sounds/Gorilla.mp3' },
+  { animal: '🐯', food: '🍍', sound: './Sounds/Tiger.mp3' }
+];
+
 let dragged = null;
 let point = 0;
 
-function pointSystem(target, event) { // Point-based game checker
+const pointSystem = (target, event) => {
+  const animal = obj.find(function(objAnimal) {
+    objAnimal.animal == event.target.innerText;
+  })
 
-  switch (target.innerText) {
-    case "🍎":
-      if (event.target.innerText == "🐵") {
-        point += 100;
-      } else {
-        point -= 100;
-      }
-      break;
-    case "🍌":
-      if (event.target.innerText == "🦍") {
-        point += 100;
-      } else {
-        point -= 100;
-      }
-      break;
-    case "🍍":
-      if (event.target.innerText == "🐯") {
-        point += 100;
-      } else {
-        point -= 100;
-      }
-      break;
+  if (animal.food === target.innerText) {
+    point += 100;
+
+    const audio = new Audio(animal.sound);
+    audio.play();
+
+    setTimeout(function() {
+      audio.pause();
+    }, 4000);
+  } else {
+    point -= 100;
   }
 
+  POINT.dataset.value = point;
+  POINT.innerText = `Point: ${point}`;
+
   if (point <= 0) {
-    alert('You failed!')
+    alert('You failed!');
 
     point = 0;
     POINT.dataset.value = 0;
-  } else {
-    POINT.dataset.value = point;
   }
+};
 
-  POINT.innerText = `Point: ${point}`;
-}
-
-for (let i = 0; i <= FOOD.children.length - 1; i++) { // static EventListener to all elements that require it, adds the draggable events
-  FOOD.children[i].addEventListener("dragstart", function (event) {
+for (const food of FOOD.children) {
+  food.addEventListener("dragstart", (event) => {
     dragged = event.target;
   });
 }
 
-for (let i = 0; i < ANIMALS.children.length; i++) {
-  ANIMALS.children[i].addEventListener("dragover", function (event) {
+for (const animal of ANIMALS.children) {
+  animal.addEventListener("dragover", (event) => {
     event.preventDefault();
   });
 
-  ANIMALS.children[i].addEventListener("drop", function (event) {
+  animal.addEventListener("drop", (event) => {
     event.preventDefault();
-
     pointSystem(dragged, event);
   });
 }
