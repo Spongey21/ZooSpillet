@@ -56,3 +56,25 @@ for (const animal of ANIMALS.children) {
     pointSystem(dragged, event);
   });
 }
+
+
+
+
+const fisk = [
+  fisk2 = ['fisk', 'ost']
+]
+
+fisk[0][0]
+
+
+hest = [1, 2, [3, 4], [5, 6]]
+
+hest.forEach(element, i => {
+  if (element.length > 1) {
+    hest[i].forEach(element2 => {
+      console.log(element2);
+    })
+  } else {
+    console.log(hest[i]);
+  }
+});

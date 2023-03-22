@@ -10,30 +10,32 @@
 </head>
 
 <body>
-    <div class="container">
-        <button onclick="AddAnimal"></button>
+    <header class="container">
+        <svg width="100" height="100" class="eye">
+            <circle cx="50" cy="50" r="50" fill="white" class="eyeball" />
+            <circle cx="50" cy="50" r="30" fill="black" class="pupil"/>
+        </svg>
         <h1>Giv Dyrene Mad</h1>
         <p id="point" data-value='0'>Point: 0</p>
         <Section>
             <h2>Dyr</h2>
             <p>Træk Maden hen til dyrene</p>
         </Section>
-        <div>
-            <section class="animals">
-                <h2>Animals</h2>
-                <p>🐵</p>
-                <p>🦍</p>
-                <p>🐯</p>
-                <p>🐶</p>
-            </section>
-            <Section class="food">
-                <h2>Mad</h2>
-                <p draggable="true">🍎</p>
-                <p draggable="true">🍌</p>
-                <p draggable="true">🍍</p>
-            </Section>
+    </header>
+    <main class="container">
+        <div class="animals">
+            <p>🐵</p>
+            <p>🦍</p>
+            <p>🐯</p>
+            <p>🐶</p>
         </div>
-    </div>
+        <div class="food">
+            <p draggable="true">🍎</p>
+            <p draggable="true">🍌</p>
+            <p draggable="true">🍍</p>
+        </div>
+    </main>
+    <script src="eyeball.js"></script>
     <script src="script.js"></script>
 </body>
 

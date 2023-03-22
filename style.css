@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
     color: white;
 }
 
@@ -12,21 +13,37 @@ body {
 .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
+
+    padding: 2rem;
 
     text-align: center;
 }
 
-.container div {
+.animals {
     display: flex;
     flex-direction: row;
-    gap: 10rem;
+    gap: 2rem;
 
-    margin-top: 2rem;
+    margin: 3rem 0;
+}
+
+.food {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
 }
 
 .animals p, .food p {
-    padding: 1rem;
     font-size: xxx-large;
+
+    background-image: url('https://picsum.photos/200');
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+.animals p::selection, .food p::selection {
+    background-color: transparent;
 }
