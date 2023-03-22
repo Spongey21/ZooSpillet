@@ -11,18 +11,18 @@ const obj = [
 let dragged = null;
 let point = 0;
 
-const pointSystem = (target, event) => {
-  const animal = obj.find(function(objAnimal) {
-    objAnimal.animal == event.target.innerText;
+const pointSystem = function (target, event) {
+  const animal = obj.find(function(animalObj) {
+    return animalObj.animal == event.target.innerText;
   })
 
-  if (animal.food === target.innerText) {
+  if (animal.food == target.innerText) {
     point += 100;
 
     const audio = new Audio(animal.sound);
     audio.play();
 
-    setTimeout(function() {
+    setTimeout(function () {
       audio.pause();
     }, 4000);
   } else {
@@ -41,17 +41,17 @@ const pointSystem = (target, event) => {
 };
 
 for (const food of FOOD.children) {
-  food.addEventListener("dragstart", (event) => {
+  food.addEventListener("dragstart", function (event) {
     dragged = event.target;
   });
 }
 
 for (const animal of ANIMALS.children) {
-  animal.addEventListener("dragover", (event) => {
+  animal.addEventListener("dragover", function (event) {
     event.preventDefault();
   });
 
-  animal.addEventListener("drop", (event) => {
+  animal.addEventListener("drop", function (event) {
     event.preventDefault();
     pointSystem(dragged, event);
   });
