@@ -20,7 +20,6 @@ const pointSystem = function (target, event) {
     POINT.dataset.value = parseInt(POINT.dataset.value) + 100;
     localStorage.setItem('score', POINT.dataset.value)
 
-    event.toElement.classList.add('animate__animated', 'animate__tada')
     const audio = new Audio(animal.sound);
     audio.play();
 
