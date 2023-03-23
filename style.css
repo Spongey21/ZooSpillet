@@ -36,7 +36,8 @@ body {
     gap: 2rem;
 }
 
-.animals p, .food p {
+.animals p,
+.food p {
     font-size: xxx-large;
 
     background-image: url('https://picsum.photos/200');
@@ -44,6 +45,7 @@ body {
     padding: 0.5rem;
 }
 
-.animals p::selection, .food p::selection {
+.animals p::selection,
+.food p::selection {
     background-color: transparent;
 }
