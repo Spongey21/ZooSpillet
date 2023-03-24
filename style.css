@@ -7,7 +7,9 @@
 }
 
 body {
-    background-color: #111;
+    background: linear-gradient(to right, #111, gray);
+    background-size: 300%;
+    animation: changeGradient 3s ease-in-out;
 }
 
 .container {
@@ -28,6 +30,8 @@ body {
     gap: 2rem;
 
     margin: 3rem 0;
+
+    cursor: default;
 }
 
 .food {
@@ -51,4 +55,14 @@ body {
 .animals p::selection,
 .food p::selection {
     background-color: transparent;
+}
+
+@keyframes changeGradient {
+    from, to {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 50% 100%;
+    }
 }

@@ -12,7 +12,6 @@ const obj = [
 SCORE.textContent = `Score: ${localStorage.getItem('score')}` 
 
 const pointSystem = function (target, event) {
-
   // Finds the animal that is attached to the textcontent of our event
   const animal = obj.find(function (animalObj) {
     return animalObj.animal == event.target.textContent;
@@ -49,7 +48,6 @@ const pointSystem = function (target, event) {
 };
 
 let dragged = null;
-
 
 // Applies all the nessecarry events to have the dragable elements and their targets work
 for (const food of FOOD.children) {
