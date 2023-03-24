@@ -3,18 +3,14 @@ const FOOD = document.querySelector(".food");
 const POINT = document.querySelector("#point");
 const SCORE = document.querySelector('#score');
 
-const obj = [
-  { animal: '🐵', food: '🍎', sound: './Sounds/Monkey.mp3' },
-  { animal: '🦍', food: '🍌', sound: './Sounds/Gorilla.mp3' },
-  { animal: '🐯', food: '🍍', sound: './Sounds/Tiger.mp3' }
-];
+const obj = []; // animal array
 
-SCORE.textContent = `Score: ${localStorage.getItem('score')}` 
+SCORE.textContent = `Score: ${localStorage.getItem('score')}`
 
 const pointSystem = function (target, event) {
   // Finds the animal that is attached to the textcontent of our event
   const animal = obj.find(function (animalObj) {
-    return animalObj.animal == event.target.textContent;
+    return animalObj.name == event.target.textContent;
   })
 
   if (animal.food == target.textContent) {
@@ -38,11 +34,12 @@ const pointSystem = function (target, event) {
 
   // Displays the current points to the user
   POINT.textContent = `Point: ${POINT.dataset.value}`;
-  
+
   // Game Failure detection
   if (parseInt(POINT.dataset.value) <= 0) {
-    alert('You failed!');
+    alert('You failed!')
 
+    POINT.textContent = 'Point: 0';
     POINT.dataset.value = 0;
   }
 };
@@ -57,6 +54,12 @@ for (const food of FOOD.children) {
 }
 
 for (const animal of ANIMALS.children) {
+  obj.push({
+    name: animal.textContent,
+    food: animal.dataset.food,
+    sound: animal.dataset.sound,
+  })
+
   animal.addEventListener("dragover", function (event) {
     event.preventDefault();
   });
