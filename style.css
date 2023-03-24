@@ -34,6 +34,8 @@ body {
     display: flex;
     flex-direction: row;
     gap: 2rem;
+    
+    cursor: pointer;
 }
 
 .animals p,
@@ -43,6 +45,7 @@ body {
     background-image: url('https://picsum.photos/200');
     border-radius: 50%;
     padding: 0.5rem;
+
 }
 
 .animals p::selection,

@@ -12,14 +12,19 @@ const obj = [
 SCORE.textContent = `Score: ${localStorage.getItem('score')}` 
 
 const pointSystem = function (target, event) {
+
+  // Finds the animal that is attached to the textcontent of our event
   const animal = obj.find(function (animalObj) {
     return animalObj.animal == event.target.textContent;
   })
 
   if (animal.food == target.textContent) {
+
+    // Distributes values, to our point data-value and the localstorage
     POINT.dataset.value = parseInt(POINT.dataset.value) + 100;
     localStorage.setItem('score', POINT.dataset.value)
 
+    // Plays the animal noise and stops after 6s
     const audio = new Audio(animal.sound);
     audio.play();
 
@@ -27,11 +32,15 @@ const pointSystem = function (target, event) {
       audio.pause();
     }, 4000);
   } else {
+
+    // Distributes negative value upon failure to give correct food 
     POINT.dataset.value = parseInt(POINT.dataset.value) - 100;
   }
 
+  // Displays the current points to the user
   POINT.textContent = `Point: ${POINT.dataset.value}`;
   
+  // Game Failure detection
   if (parseInt(POINT.dataset.value) <= 0) {
     alert('You failed!');
 
@@ -41,6 +50,8 @@ const pointSystem = function (target, event) {
 
 let dragged = null;
 
+
+// Applies all the nessecarry events to have the dragable elements and their targets work
 for (const food of FOOD.children) {
   food.addEventListener("dragstart", function (event) {
     dragged = event.target;
@@ -54,6 +65,6 @@ for (const animal of ANIMALS.children) {
 
   animal.addEventListener("drop", function (event) {
     event.preventDefault();
-    pointSystem(dragged, event);
+    pointSystem(dragged, event); // Invokes the pointsystem method
   });
 }
